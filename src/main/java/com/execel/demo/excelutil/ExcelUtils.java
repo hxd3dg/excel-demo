@@ -216,6 +216,15 @@ public class ExcelUtils {
 
     }
 
+    /**
+     * 生成excel文件
+     * @author YZ
+     * @date 2019/12/9 15:03
+     * @param response
+     * @param dataList
+     * @param cls
+     * @return void
+     **/
     public static <T> void writeExcel(HttpServletResponse response, List<T> dataList, Class<T> cls){
         Field[] fields = cls.getDeclaredFields();
         List<Field> fieldList = Arrays.stream(fields)
@@ -289,13 +298,14 @@ public class ExcelUtils {
         //冻结窗格
         wb.getSheet("Sheet1").createFreezePane(0, 1, 0, 1);
         //浏览器下载excel
-        buildExcelDocument("abbot.xlsx",wb,response);
-        //生成excel文件
-//        buildExcelFile(".\\default.xlsx",wb);
+        //todo 文件名设置
+        buildExcelDocument("goods.xlsx",wb,response);
+        //项目环境生成excel文件
+        //buildExcelFile(".\\default.xlsx",wb);
     }
 
     /**
-     * 浏览器下载excel
+     * 浏览器下载excel文件
      * @param fileName
      * @param wb
      * @param response
@@ -313,10 +323,13 @@ public class ExcelUtils {
     }
 
     /**
-     * 生成excel文件
-     * @param path 生成excel路径
+     * 在项目环境下生成excel文件
+     * @author YZ
+     * @date 2019/12/9 15:16
+     * @param path
      * @param wb
-     */
+     * @return void
+     **/
     private static  void  buildExcelFile(String path, Workbook wb){
 
         File file = new File(path);
