@@ -75,4 +75,17 @@ public class ExcelController {
                 b -> System.out.println(JSON.toJSONString(b))
         );
     }
+
+    /**
+     * 导出excel模板文件
+     * @author YZ
+     * @date 2019/12/10 10:43
+     * @param request
+     * @param response
+     * @return void
+     **/
+    @RequestMapping(value = "/downloadExcelTemplate", method = RequestMethod.GET)
+    public void downloadExcelTemplate(HttpServletRequest request, HttpServletResponse response) {
+        ExcelUtils.writeExcel(response,null , BusClick.class);
+    }
 }
