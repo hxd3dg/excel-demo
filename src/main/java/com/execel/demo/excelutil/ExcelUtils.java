@@ -229,7 +229,7 @@ public class ExcelUtils {
      * @param cls
      * @return void
      **/
-    public static <T> void writeExcel(HttpServletResponse response, List<T> dataList, Class<T> cls){
+    public static <T> void writeExcel(HttpServletResponse response, List<T> dataList, Class<T> cls, String string){
         Field[] fields = cls.getDeclaredFields();
         List<Field> fieldList = Arrays.stream(fields)
                 .filter(field -> {
@@ -302,8 +302,8 @@ public class ExcelUtils {
         //冻结窗格
         wb.getSheet("Sheet1").createFreezePane(0, 1, 0, 1);
         //浏览器下载excel
-        //todo 文件名设置
-        buildExcelDocument("goods.xlsx",wb,response);
+        //文件名设置
+        buildExcelDocument(string+".xlsx",wb,response);
         //项目环境生成excel文件
         //buildExcelFile(".\\default.xlsx",wb);
     }

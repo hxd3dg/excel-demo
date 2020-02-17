@@ -48,7 +48,7 @@ public class ExcelController {
 
         List<BusClick> resultList = new ArrayList<BusClick>();
         long t1 = System.currentTimeMillis();
-        ExcelUtils.writeExcel(response, resultList, BusClick.class);
+        ExcelUtils.writeExcel(response, resultList, BusClick.class,"excel");
         long t2 = System.currentTimeMillis();
         System.out.println(String.format("write over! cost:%sms", (t2 - t1)));
         System.out.println("execel文件导出成功");
@@ -86,6 +86,6 @@ public class ExcelController {
      **/
     @RequestMapping(value = "/downloadExcelTemplate", method = RequestMethod.GET)
     public void downloadExcelTemplate(HttpServletRequest request, HttpServletResponse response) {
-        ExcelUtils.writeExcel(response,null , BusClick.class);
+        ExcelUtils.writeExcel(response,null , BusClick.class,"excel模板");
     }
 }
